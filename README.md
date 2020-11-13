@@ -40,3 +40,7 @@ You can also pass additional arguments to `extract` and `extractOne` to set a sc
     [('simple strings', 0.9285714285714286), ('sim string', 0.7692307692307693)]
 ```
 `match_type` options include `trigram`, `cosine`, `levenshtein`, `jaro_winkler`
+
+
+# Config
+You can change the default algorithim to be used by changing `default_algorithim` in `config.ini`. It is set to `trigram` by default.
