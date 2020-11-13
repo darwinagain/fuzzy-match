@@ -3,7 +3,7 @@
 import configparser
 from importlib import resources  # Python 3.7+
 import heapq
-import algorithims as al
+from . import algorithims
 
 
 
@@ -28,13 +28,13 @@ def extract(query, choices, match_type=default_algorithim, score_cutoff=0, limit
     """
     try:
         if match_type == 'trigram':
-            match_type = al.trigram
+            match_type = algorithims.trigram
         elif match_type == 'levenshtein':
-            match_type = al.levenshtein
+            match_type = algorithims.levenshtein
         elif match_type == 'cosine':
-            match_type = al.cosine
+            match_type = algorithims.cosine
         elif match_type == 'jaro_winkler':
-            match_type = al.jaro_winkler
+            match_type = algorithims.jaro_winkler
         try:
             if choices is None or len(choices) == 0:
                 return
