@@ -2,25 +2,26 @@
 # encoding: utf-8
 import configparser
 from importlib import resources  # Python 3.7+
+import heapq
 import algorithims as al
 
 
 
 config = configparser.ConfigParser()
-config.read(r'fuzzy-match\fuzzy-match\config.ini')
+config.read(r'fuzzy-match\fuzzy_match\config.ini')
 default_algorithim = config.get('DEFAULT', 'default_algorithim')
 
-if default_algorithim == 'trigram':
-    default_algorithim = al.trigram
-elif default_algorithim == 'levenshtein':
-    default_algorithim = al.levenshtein
-elif default_algorithim == 'cosine':
-    default_algorithim = al.cosine
-elif default_algorithim == 'jaro_winkler':
-    default_algorithim = al.jaro_winkler
+# if default_algorithim == 'trigram':
+#     default_algorithim = al.trigram
+# elif default_algorithim == 'levenshtein':
+#     default_algorithim = al.levenshtein
+# elif default_algorithim == 'cosine':
+#     default_algorithim = al.cosine
+# elif default_algorithim == 'jaro_winkler':
+#     default_algorithim = al.jaro_winkler
 
 
-def extract(query, choices, match_type=default_algorithim, score_cutoff=0):
+def extract(query, choices, match_type=default_algorithim, score_cutoff=0, limit=5):
     """
     Find the similarity between a query item and a list of choices.
     Returns a tuple of all choices and their associated similarity score.
@@ -35,6 +36,14 @@ def extract(query, choices, match_type=default_algorithim, score_cutoff=0):
 
     """
     try:
+        if match_type == 'trigram':
+            match_type = al.trigram
+        elif match_type == 'levenshtein':
+            match_type = al.levenshtein
+        elif match_type == 'cosine':
+            match_type = al.cosine
+        elif match_type == 'jaro_winkler':
+            match_type = al.jaro_winkler
         try:
             if choices is None or len(choices) == 0:
                 return
@@ -49,7 +58,11 @@ def extract(query, choices, match_type=default_algorithim, score_cutoff=0):
             if score >= score_cutoff:
                 results.append(data)
 
-        return results
+
+        return heapq.nlargest(limit, results, key=lambda i: i[1]) if limit is not None else \
+            sorted(results, key=lambda i: i[1], reverse=True)
+
+        # return results
 
     except:
         return None
