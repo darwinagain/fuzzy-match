@@ -1,5 +1,5 @@
 # Fuzzy-Match
-Fuzzy string matching in Python. By default it uses [Trigrams](https://en.wikipedia.org/wiki/Trigram) to calculate a similarity score and find matches by splitting strings into ngrams with a length of 3. The length of the ngram can be altered if desired. Also, [Cosine](https://en.wikipedia.org/wiki/Cosine_similarity), [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance), and [Jaro-Winkler Distance](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance) algorithims are also available as alternatives.
+Fuzzy string matching in Python. By default it uses [Trigrams](https://en.wikipedia.org/wiki/Trigram) to calculate a similarity score and find matches by splitting strings into ngrams with a length of 3. The length of the ngram can be altered if desired. [Cosine](https://en.wikipedia.org/wiki/Cosine_similarity), [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance), and [Jaro-Winkler Distance](https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance) algorithims are also available as alternatives.
 
 # Usage
 ```python
