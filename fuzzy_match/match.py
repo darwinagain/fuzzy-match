@@ -1,18 +1,12 @@
 #!/usr/bin/env python
 # encoding: utf-8
-import configparser
 from importlib import resources  # Python 3.7+
 import heapq
 from . import algorithims
 
 
 
-config = configparser.ConfigParser()
-config.read(r'fuzzy-match\fuzzy_match\config.ini')
-default_algorithim = config.get('DEFAULT', 'default_algorithim')
-
-
-def extract(query, choices, match_type=default_algorithim, score_cutoff=0, limit=5):
+def extract(query, choices, match_type='trigram', score_cutoff=0, limit=5):
     """
     Find the similarity between a query item and a list of choices.
     Returns a tuple of all choices and their associated similarity score.
@@ -59,7 +53,7 @@ def extract(query, choices, match_type=default_algorithim, score_cutoff=0, limit
         return None
 
 
-def extractOne(query, choices, match_type=default_algorithim, score_cutoff=0):
+def extractOne(query, choices, match_type='trigram', score_cutoff=0):
     """
     Finds the most similar item to query item from a list of choices.
     Returns tuple of best choice and its associated similarity score.
