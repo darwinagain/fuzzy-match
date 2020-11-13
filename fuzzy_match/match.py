@@ -11,15 +11,6 @@ config = configparser.ConfigParser()
 config.read(r'fuzzy-match\fuzzy_match\config.ini')
 default_algorithim = config.get('DEFAULT', 'default_algorithim')
 
-# if default_algorithim == 'trigram':
-#     default_algorithim = al.trigram
-# elif default_algorithim == 'levenshtein':
-#     default_algorithim = al.levenshtein
-# elif default_algorithim == 'cosine':
-#     default_algorithim = al.cosine
-# elif default_algorithim == 'jaro_winkler':
-#     default_algorithim = al.jaro_winkler
-
 
 def extract(query, choices, match_type=default_algorithim, score_cutoff=0, limit=5):
     """
